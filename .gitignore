@@ -1,0 +1,12 @@
+.DS_Store
+Thumbs.db
+*.log
+.env
+.venv/
+__pycache__/
+outputs/
+outputs_*/
+*.pt
+*.pth
+*.ckpt
+*.safetensors
