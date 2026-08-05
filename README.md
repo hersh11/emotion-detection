@@ -1,64 +1,66 @@
-# Emotion Detection
+# Emotion detection
 
-Emotion Detection is a notebook-based machine learning project for multi-label emotion classification using transformer models and the GoEmotions-style workflow.
+A notebook based machine learning project for multi-label emotion classification on GoEmotions. The notebook trains a transformer classifier, tunes the prediction threshold, evaluates test metrics, and saves model artifacts and analysis outputs.
 
-## Features
+## What it does
 
-- Dataset loading and preprocessing workflow
-- Transformer-based training notebook
-- Validation metrics and threshold tuning
-- Misclassification analysis
-- Exportable notebook results for demos
+- Loads the GoEmotions dataset
+- Trains a DeBERTa v3 based multi-label classifier
+- Uses `BCEWithLogitsLoss` for multi-label prediction
+- Tunes the decision threshold on the validation split
+- Reports micro and macro metrics
+- Produces per-label metrics, confusion matrices, and misclassified examples
+- Saves model artifacts and output files from the notebook run
 
-## Tech Stack
+## Tech stack
 
 - Python
 - PyTorch
-- Transformers
-- Datasets
+- Hugging Face Transformers
+- Hugging Face Datasets
 - scikit-learn
 - pandas, NumPy, Matplotlib, Seaborn
 
-## Installation
+## Run locally
 
-Create and activate a virtual environment, then install dependencies:
+Create a virtual environment:
 
 ```bash
 python -m venv .venv
 .venv\Scripts\activate
+```
+
+Install dependencies:
+
+```bash
 pip install -r requirements.txt
 ```
 
-## Environment Setup
+Open `emotion_detection.ipynb` in VS Code, JupyterLab, or Jupyter Notebook and run the cells in order.
 
-No API keys are required for the checked-in notebook. If you later download private datasets or upload models, keep tokens in a local `.env` file and do not commit them.
+## Run in Colab
 
-## Run Instructions
-
-Open `emotion_detection.ipynb` in Jupyter Notebook, JupyterLab, VS Code, or Google Colab and run cells from top to bottom.
-
-## Screenshots
-
-Add screenshots of metrics, charts, or notebook outputs here before sharing the project.
+The notebook includes a Colab badge. Colab is the easiest free option if you need a GPU runtime.
 
 ## Deployment
 
-Recommended platform: Hugging Face Spaces or Google Colab.
+Use Hugging Face Spaces if you want recruiters to try the model in a browser.
 
-Why: the project is notebook/ML oriented and needs Python ML dependencies rather than static hosting.
+Recommended path:
 
-### Demo Options
+1. Train or load the model from the notebook.
+2. Create a small Gradio app with a text box and predicted emotion labels.
+3. Push the Gradio app to a free Hugging Face Space.
 
-1. **Google Colab**: upload the notebook and run it with a GPU runtime.
-2. **Hugging Face Spaces**: convert the trained model into a small Gradio demo.
-3. **GitHub**: keep the notebook and documentation for code review.
+If you do not build the Gradio demo yet, share the GitHub repo and a Colab link.
 
-## Known Limitations
+## Recruiter note
 
-- The repository currently contains the notebook workflow, not a packaged web app.
-- Full training can require GPU resources.
-- Model artifacts are not included as deployable files.
+This is a good ML portfolio project if the notebook has clean outputs and metrics. To make it stronger, add a short results section with the final test metrics and include example predictions in the README.
 
-## Credits
+## Limitations
 
-Built as a college machine learning project for emotion classification.
+- The current repo is a notebook workflow, not a packaged application
+- Full training is much easier with a GPU
+- Trained model files are not included in the repository
+- A browser demo still needs to be built with Gradio or Streamlit
