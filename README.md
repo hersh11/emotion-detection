@@ -67,9 +67,6 @@ For Hugging Face Spaces, create a Streamlit Space and upload:
 - `label_map.json`
 - the model artifacts, preferably with Git LFS
 
-## Recruiter note
-
-This project is stronger now because it has both training code and a working browser demo. Before putting it on your resume, add final test metrics from the notebook and a few example predictions.
 
 ## Limitations
 
