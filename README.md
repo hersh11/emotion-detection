@@ -1,29 +1,37 @@
 # Emotion detection
 
-A notebook based machine learning project for multi-label emotion classification on GoEmotions. The notebook trains a transformer classifier, tunes the prediction threshold, evaluates test metrics, and saves model artifacts and analysis outputs.
+A multi-label emotion detection project trained on GoEmotions with a DeBERTa v3 model. The repository includes the original training notebook and a Streamlit app for local inference.
 
 ## What it does
 
-- Loads the GoEmotions dataset
-- Trains a DeBERTa v3 based multi-label classifier
-- Uses `BCEWithLogitsLoss` for multi-label prediction
-- Tunes the decision threshold on the validation split
-- Reports micro and macro metrics
-- Produces per-label metrics, confusion matrices, and misclassified examples
-- Saves model artifacts and output files from the notebook run
+- Predicts one or more emotions from text
+- Uses a transformer classifier with sigmoid outputs
+- Applies a tuned confidence threshold for multi-label prediction
+- Shows detected emotions and confidence scores
+- Displays a probability chart for all 28 GoEmotions labels
 
 ## Tech stack
 
 - Python
+- Streamlit
 - PyTorch
 - Hugging Face Transformers
-- Hugging Face Datasets
-- scikit-learn
-- pandas, NumPy, Matplotlib, Seaborn
+- pandas
+- Altair
+
+## Project files
+
+```text
+app.py                    Streamlit inference app
+emotion_detection.ipynb   Training and evaluation notebook
+label_map.json            GoEmotions label mapping
+requirements.txt          Runtime dependencies
+artifacts/                Local model files, ignored by Git
+```
 
 ## Run locally
 
-Create a virtual environment:
+Create and activate a virtual environment:
 
 ```bash
 python -m venv .venv
@@ -36,31 +44,35 @@ Install dependencies:
 pip install -r requirements.txt
 ```
 
-Open `emotion_detection.ipynb` in VS Code, JupyterLab, or Jupyter Notebook and run the cells in order.
+Run the app:
 
-## Run in Colab
+```bash
+streamlit run app.py
+```
 
-The notebook includes a Colab badge. Colab is the easiest free option if you need a GPU runtime.
+The app expects trained model files in `artifacts/`. Keep those files out of normal Git commits because the model checkpoint is large.
+
+## Training notebook
+
+Open `emotion_detection.ipynb` in VS Code, Jupyter, or Colab to review the training workflow. The notebook covers dataset loading, preprocessing, transformer training, threshold tuning, final evaluation, per-label metrics, and misclassified examples.
 
 ## Deployment
 
-Use Hugging Face Spaces if you want recruiters to try the model in a browser.
+Use Streamlit Community Cloud or Hugging Face Spaces for a free recruiter demo.
 
-Recommended path:
+For Hugging Face Spaces, create a Streamlit Space and upload:
 
-1. Train or load the model from the notebook.
-2. Create a small Gradio app with a text box and predicted emotion labels.
-3. Push the Gradio app to a free Hugging Face Space.
-
-If you do not build the Gradio demo yet, share the GitHub repo and a Colab link.
+- `app.py`
+- `requirements.txt`
+- `label_map.json`
+- the model artifacts, preferably with Git LFS
 
 ## Recruiter note
 
-This is a good ML portfolio project if the notebook has clean outputs and metrics. To make it stronger, add a short results section with the final test metrics and include example predictions in the README.
+This project is stronger now because it has both training code and a working browser demo. Before putting it on your resume, add final test metrics from the notebook and a few example predictions.
 
 ## Limitations
 
-- The current repo is a notebook workflow, not a packaged application
-- Full training is much easier with a GPU
-- Trained model files are not included in the repository
-- A browser demo still needs to be built with Gradio or Streamlit
+- The model checkpoint is too large for a normal Git commit
+- Inference runs on CPU unless deployed with GPU hardware
+- The app is a demo, not a moderation or clinical tool

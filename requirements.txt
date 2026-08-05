@@ -1,8 +1,6 @@
-datasets
-matplotlib
-numpy
-pandas
-scikit-learn
-seaborn
+streamlit
 torch
 transformers
+pandas
+altair
+numpy
